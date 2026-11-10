@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "MyAutoScroll",
+  "version": "0.2.0",
+  "description": "Auto scroll for manga reading on MangaFire with a pause/start shortcut and slow-down over speech bubbles.",
+  "permissions": ["storage", "declarativeNetRequest"],
+  "host_permissions": ["https://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://mangafire.to/*", "*://*.mangafire.to/*"],
+      "js": ["detector.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "MyAutoScroll",
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "toggle-scroll": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Start / pause auto scroll"
+    }
+  }
+}
